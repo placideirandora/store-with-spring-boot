@@ -7,7 +7,13 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class StoreApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(StoreApplication.class, args);
+//		SpringApplication.run(StoreApplication.class, args);
+        var orderService = new OrderService(new StripePaymentService());
+        var paypalService = new OrderService(new PaypalPaymentService());
+
+        orderService.placeOrder(10.5);
+        paypalService.placeOrder(20.8);
 	}
+
 
 }
